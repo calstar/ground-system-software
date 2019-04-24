@@ -1,0 +1,19 @@
+{
+  "name": "ground_station_openmct",
+  "version": "0.0.1",
+  "description": "OpenMCT for CalSTAR",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "postinstall": "cd node_modules/openmct && npm install"
+  },
+  "dependencies": {
+    "@drivetech/node-nmea": "^2.0.1",
+    "chalk": "^2.4.2",
+    "express": "^4.14.1",
+    "express-ws": "^3.0.0",
+    "openmct": "nasa/openmct",
+    "serialport": "^7.1.4",
+    "ws": "^2.0.3"
+  }
+}

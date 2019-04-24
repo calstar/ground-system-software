@@ -1,0 +1,416 @@
+{
+    "name": "Rocket",
+    "key": "rocket",
+    "measurements": [
+        {
+            "name": "Raw Transmission",
+            "key": "transmission",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Raw Transmission",
+                    "format": "string",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Ground Station RSSI",
+            "key": "gs.rssi",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "RSSI",
+                    "units": "dBm",
+                    "format": "integer",
+                    "min": -120,
+                    "max": 1,
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "FC State",
+            "key": "fc.state",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "FC State",
+                    "format": "enum",
+                    "enumerations": [
+                        {
+                            "string": "Setup",
+                            "value": 0
+                        },
+                        {
+                            "string": "Pad",
+                            "value": 1
+                        },
+                        {
+                            "string": "Flight",
+                            "value": 2
+                        },
+                        {
+                            "string": "Armed",
+                            "value": 3
+                        },
+                        {
+                            "string": "DrogueIgnition",
+                            "value": 4
+                        },
+                        {
+                            "string": "DrogueCoast",
+                            "value": 5
+                        },
+                        {
+                            "string": "MainIgnition",
+                            "value": 6
+                        },
+                        {
+                            "string": "MainCoast",
+                            "value": 7
+                        },
+                        {
+                            "string": "Landed",
+                            "value": 8
+                        }
+                    ],
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "AccelX",
+            "key": "accel.x",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "AccelX",
+                    "units": "g's",
+                    "format": "float",
+                    "min": -100,
+                    "max": 100,
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "AccelY",
+            "key": "accel.y",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "AccelY",
+                    "units": "g's",
+                    "format": "float",
+                    "min": -100,
+                    "max": 100,
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "AccelZ",
+            "key": "accel.z",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "AccelZ",
+                    "units": "g's",
+                    "format": "float",
+                    "min": -100,
+                    "max": 100,
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Received",
+            "key": "comms.recd",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Number of bytes received",
+                    "units": "bytes",
+                    "format": "integer",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Sent",
+            "key": "comms.sent",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Number of bytes sent",
+                    "units": "bytes",
+                    "format": "integer",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Altitude",
+            "key": "fc.alt",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Altitude",
+                    "units": "feet",
+                    "format": "float",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "FC Power",
+            "key": "fc.pwr",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "FC Power",
+                    "format": "enum",
+                    "enumerations": [
+                        {
+                            "string": "OFF",
+                            "value": 0
+                        },
+                        {
+                            "string": "ON",
+                            "value": 1
+                        }
+                    ],
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GPS",
+            "key": "tpc.gps",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "GPS String",
+                    "format": "string",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+
+            "name": "Groundstation Log",
+            "key": "gs.log",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Ground Station Log",
+                    "format": "string",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Battery Voltage",
+            "key": "tpc.bat_v",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Battery Voltage",
+                    "format": "float",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+
+            "name": "Battery Voltage Moving Averaged",
+            "key": "tpc.bat_v_avgd",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Battery Voltage Moving Averaged",
+                    "format": "float",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Test Telemetry",
+            "key": "test.telemetry",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Test Telemetry",
+                    "format": "float",
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        }
+    ]
+}

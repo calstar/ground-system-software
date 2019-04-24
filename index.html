@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title>Open MCT Tutorials</title>
+    <script src="node_modules/openmct/dist/openmct.js"></script>
+    <script src="lib/http.js"></script>
+    <script src="dictionary-plugin.js"></script>
+    <script src="historical-telemetry-plugin.js"></script>
+    <script src="realtime-telemetry-plugin.js"></script>
+</head>
+
+<body>
+    <script>
+        // Sets up the layouts available on the localhost. If you want to change
+        //      the layouts for everybody else, change the layout in the browser 
+        //      and then go into inspect element, local storage, and copy-paste
+        //      the keye for 'mct' into below.
+        localStorage.setItem('mct', '{"5b0c5557-1564-43e0-9560-f332d8e1ec09":{"composition":["taxonomy:gs.rssi","taxonomy:fc.state","taxonomy:comms.recd","taxonomy:comms.sent","taxonomy:fc.alt","taxonomy:fc.pwr","taxonomy:tpc.gps","e0b72354-85a8-4469-a877-67e8a3537460","taxonomy:gs.log"],"configuration":{"layout":{"panels":{"taxonomy:gs.rssi":{"position":[0,0],"dimensions":[12,8],"hasFrame":true},"taxonomy:fc.state":{"position":[28,8],"dimensions":[12,8],"hasFrame":true},"taxonomy:comms.recd":{"position":[0,8],"dimensions":[12,8],"hasFrame":true},"taxonomy:comms.sent":{"position":[0,16],"dimensions":[12,8],"hasFrame":true},"taxonomy:fc.alt":{"position":[28,16],"dimensions":[12,8],"hasFrame":true},"taxonomy:fc.pwr":{"position":[28,0],"dimensions":[12,8],"hasFrame":true},"taxonomy:tpc.gps":{"position":[12,0],"dimensions":[16,8],"hasFrame":true},"taxonomy:tpc.bat_v":{"position":[12,8],"dimensions":[16,8],"hasFrame":true},"e0b72354-85a8-4469-a877-67e8a3537460":{"position":[12,8],"dimensions":[16,8],"hasFrame":true},"taxonomy:gs.log":{"position":[12,16],"dimensions":[16,8],"hasFrame":true}}}},"name":"Ground System Dashboard","type":"layout","modified":1555637392576,"location":"mine","persisted":1555637392576},"mine":{"name":"My Items","type":"folder","composition":["5b0c5557-1564-43e0-9560-f332d8e1ec09","e0b72354-85a8-4469-a877-67e8a3537460"],"location":"ROOT","modified":1555368225801,"persisted":1555368225801},"e0b72354-85a8-4469-a877-67e8a3537460":{"composition":["taxonomy:tpc.bat_v","taxonomy:tpc.bat_v_avgd"],"configuration":{"series":[{"identifier":{"namespace":"taxonomy","key":"tpc.bat_v"}},{"identifier":{"namespace":"taxonomy","key":"tpc.bat_v_avgd"}}],"yAxis":{},"xAxis":{}},"name":"Battery Voltage","type":"telemetry.plot.overlay","modified":1555368225789,"location":"mine","persisted":1555368225789}}');
+
+        openmct.setAssetPath('node_modules/openmct/dist');
+        openmct.install(openmct.plugins.LocalStorage());
+        openmct.install(openmct.plugins.MyItems());
+        openmct.install(openmct.plugins.UTCTimeSystem());
+        openmct.time.clock('local', { start: -15 * 60 * 1000, end: 0 });
+        openmct.time.timeSystem('utc');
+        openmct.install(openmct.plugins.Espresso());
+
+        openmct.install(DictionaryPlugin());
+        openmct.install(HistoricalTelemetryPlugin());
+        openmct.install(RealtimeTelemetryPlugin());
+
+        openmct.start();
+
+    </script>
+</body>
+
+</html>
