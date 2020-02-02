@@ -1,4 +1,4 @@
-const SerialPort = require('serialport');
+//const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
 const rl = require('readline');
 const chalk = require('chalk');
@@ -8,6 +8,11 @@ const fs = require('fs')
 var txLockoutMsgTimeout;
 
 function Rocket(comPort) {
+    var SerialPort = require('serialport');
+    if (comPort == null){
+        SerialPort = require('virtual-serialport');
+        comPort = '/dev/ttyUSB0';
+    }
     this.state = {
         "fc.pwr": 0,
         "fc.state": 0,
@@ -42,8 +47,12 @@ function Rocket(comPort) {
     const logFile = fs.createWriteStream(logFileName);
     logFile.write("timestamp\tid\tvalue\r\n");
 
-    const port = new SerialPort(comPort, { baudRate: 115200 });
+    debugger;
+    var VirtualSerialPort = require('virtual-serialport');
+    var sp = new VirtualSerialPort("/dev/ttyUSB0", [opts={}]);
 
+    const port = new SerialPort(comPort, { baudRate: 115200 });
+    debugger;
     const parser = port.pipe(new Readline());
 
     parser.on('data', (line) => {

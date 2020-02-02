@@ -11,8 +11,8 @@ function runServer(comPort) {
     var expressWs = require('express-ws');
     var app = require('express')();
     expressWs(app);
-    
     var rocket = new Rocket(comPort);
+    debugger;
     var realtimeServer = new RealtimeServer(rocket);
     var historyServer = new HistoryServer(rocket);
     var staticServer = new StaticServer();
@@ -51,8 +51,8 @@ if (process.argv.length < 3) {
                 console.log("Pick one port and re-run with the port as the first argument.");
                 process.exit(1);
             } else if (possiblePorts.length == 0) {
-                console.log("Could not find any ground station ports.");
-                process.exit(1);
+                console.log("Could not find any ground station ports. Running development mode.");
+                runServer(null);
             }
         },
         err => {
