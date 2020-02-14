@@ -7,7 +7,7 @@ function runServer(comPort) {
     var RealtimeServer = require('./realtime-server');
     var HistoryServer = require('./history-server');
     var StaticServer = require('./static-server');
-    
+
     var expressWs = require('express-ws');
     var app = require('express')();
     expressWs(app);
@@ -16,13 +16,13 @@ function runServer(comPort) {
     var realtimeServer = new RealtimeServer(rocket);
     var historyServer = new HistoryServer(rocket);
     var staticServer = new StaticServer();
-    
+
     app.use('/realtime', realtimeServer);
     app.use('/history', historyServer);
     app.use('/', staticServer);
-    
+
     var port = process.env.PORT || 8080
-    
+
     app.listen(port, function () {
         console.log('Open MCT hosted at http://localhost:' + port);
         console.log('History hosted at http://localhost:' + port + '/history');
@@ -52,6 +52,7 @@ if (process.argv.length < 3) {
                 process.exit(1);
             } else if (possiblePorts.length == 0) {
                 console.log("Could not find any ground station ports. Running development mode.");
+                var mock_gs = require('../mock_gs/mock_gs.js');
                 runServer(null);
             }
         },

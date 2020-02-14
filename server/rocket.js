@@ -47,15 +47,14 @@ function Rocket(comPort) {
     const logFile = fs.createWriteStream(logFileName);
     logFile.write("timestamp\tid\tvalue\r\n");
 
-    debugger;
     var VirtualSerialPort = require('virtual-serialport');
-    var sp = new VirtualSerialPort("/dev/ttyUSB0", [opts={}]);
+    var sp = new VirtualSerialPort("/dev/ttyUSB0", { baudRate: 115200 });
 
-    const port = new SerialPort(comPort, { baudRate: 115200 });
-    debugger;
-    const parser = port.pipe(new Readline());
+    //const port = new SerialPort(comPort, { baudRate: 115200 });
 
-    parser.on('data', (line) => {
+    //const parser = port.pipe(new Readline());
+
+    sp.on('data', (line) => {
         try {
             obj = JSON.parse(line);
 
@@ -68,7 +67,7 @@ function Rocket(comPort) {
                     txLockoutMsgTimeout = setTimeout(this.writeTxLockoutMsg, 5000, true);
                 }
             }
-           
+
             var logTimestamp;
             if (obj.timestamp === -1) {
                 obj.timestamp = Date.now();
@@ -125,7 +124,7 @@ function Rocket(comPort) {
                 this.history["tpc.bat_v_avgd"].push(value);
                 this.updateConsole(bat_v_avgd);
                 logFile.write(logTimestamp + "\ttpc.bat_v_avgd\t" + value.toString() + "\r\n");
-            }  
+            }
         } catch (e) {
             rl.cursorTo(process.stdout, 0, 40);
             if (e instanceof SyntaxError) {
