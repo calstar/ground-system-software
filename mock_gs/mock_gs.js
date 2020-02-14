@@ -2,7 +2,7 @@ const readline = require('readline');
 const fs = require('fs');
 
 const readInterface = readline.createInterface({
-    input: fs.createReadStream('logs/log18-unconsolidated.tsv'),
+    input: fs.createReadStream('./log-output.tsv'),
     output: process.stdout,
     console: false
 });
