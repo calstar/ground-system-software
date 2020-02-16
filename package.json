@@ -12,8 +12,10 @@
     "chalk": "^2.4.2",
     "express": "^4.14.1",
     "express-ws": "^3.0.0",
+    "line-reader": "^0.4.0",
     "openmct": "nasa/openmct",
-    "serialport": "^7.1.4",
+    "serialport": "^7.1.5",
+    "virtual-serialport": "^4.0.1",
     "ws": "^2.0.3"
   }
 }

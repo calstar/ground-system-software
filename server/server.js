@@ -53,6 +53,7 @@ if (process.argv.length < 3) {
             } else if (possiblePorts.length == 0) {
                 console.log("Could not find any ground station ports. Running development mode.");
                 var mock_gs = require('../mock_gs/mock_gs.js');
+                mock_gs.simulate_gs('./log-output.tsv');
                 runServer(null);
             }
         },
