@@ -11,6 +11,7 @@ function runServer(comPort) {
     var expressWs = require('express-ws');
     var app = require('express')();
     expressWs(app);
+    // console.log(vsPort);
     var rocket = new Rocket(comPort);
     debugger;
     var realtimeServer = new RealtimeServer(rocket);
@@ -52,8 +53,9 @@ if (process.argv.length < 3) {
                 process.exit(1);
             } else if (possiblePorts.length == 0) {
                 console.log("Could not find any ground station ports. Running development mode.");
-                var mock_gs = require('../mock_gs/mock_gs.js');
-                mock_gs.simulate_gs('./log-output.tsv');
+                const VirtualSerialPort = require('virtual-serialport');
+                // var mock_gs = require('../mock_gs/mock_gs.js');
+                // mock_gs.simulate_gs('./log-output.tsv');
                 runServer(null);
             }
         },

@@ -1,0 +1,36 @@
+
+> ground_station_openmct@0.0.1 start /Users/nirlevin/Documents/BerkeleyStuffs/Avionics/ground-system-software
+> node server/server.js
+
+Could not find any ground station ports. Running development mode.
+c[11;1H╔═══════════╤═════════════════════════════════════════════╗
+║           │                                             ║
+║  ID (*)   │  Value                                      ║
+║           │                                             ║
+╠═══════════╪═════════════════════════════════════════════╣
+║gs.rssi    │                                             ║
+║           │                                             ║
+║comms.recd │                                             ║
+║comms.sent │                                             ║
+╟───────────┼─────────────────────────────────────────────║
+║tpc.state  │                                             ║
+║           │                                             ║
+║tpc.bat_v  │                                             ║
+║tpc.bat_v *│                                             ║
+║           │                                             ║
+║tpc.gps    │                                             ║
+╟───────────┼─────────────────────────────────────────────║
+║fc.pwr     │                                             ║
+║           │                                             ║
+║fc.state   │                                             ║
+║           │                                             ║
+║fc.alt     │                                             ║
+╚═══════════╧═════════════════════════════════════════════╝
+
+Turn on FC: n	Turn off FC: o                                 Green: Complete   Blue: Current
+Quit: q
+[12;65H(X) - setup[13;66H|[14;65H(X) - pad[15;66H|[16;65H(X) - flight[17;66H|[18;65H(X) - armed[19;66H|[20;66H|[21;65H(X) - drogue_ignited[22;66H|[23;65H(X) - drogue_coast[24;66H|[25;66H|[26;65H(X) - main_ignited[27;66H|[28;65H(X) - main_coast[29;66H|[30;66H|[31;66H|[32;65H(X) - landed[1;1HTransceiving on port /dev/ttyUSB0
+Logging to logs/log134-unconsolidated.tsv
+Open MCT hosted at http://localhost:8080
+History hosted at http://localhost:8080/history
+Realtime hosted at ws://localhost:8080/realtime

@@ -46,18 +46,49 @@ function Rocket(comPort) {
     }
     const logFile = fs.createWriteStream(logFileName);
     logFile.write("timestamp\tid\tvalue\r\n");
-
+    const lineReader = require('line-reader');
     var VirtualSerialPort = require('virtual-serialport');
-    var sp = new VirtualSerialPort("/dev/ttyUSB0", { baudRate: 115200 });
+    // var sp = new VirtualSerialPort("/dev/ttyUSB0", { baudRate: 115200 });
 
     //const port = new SerialPort(comPort, { baudRate: 115200 });
 
     //const parser = port.pipe(new Readline());
 
-    sp.on('data', (line) => {
-        try {
-            obj = JSON.parse(line);
+    /////////////
+    var currId = "";
+    var indexNum = 0;
+    var schema = "";
+    var sp = new VirtualSerialPort("/dev/ttyUSB0", { baudRate: 115200 });
+    lineReader.eachLine('./log-output.tsv', function(line) {
+      var cols = line.split('\t');
+      if (schema !== "") {
+        var id = cols[0];// line.substring(0, line.indexOf("\t"));
+        if (currId !== id) {
+          indexNum += 1;
+          currId = id;
+        }
+        // setTimeout(() => { console.log(line); }, indexNum * 1000);
+        setTimeout(() => { sp.write(schema.format(cols[0], cols[1], cols[2])); }, indexNum * 1000);
+      } else {
+        schema = cols.reduce((schem, col) => { return schem + " \"" + col + "\": \"{}\"," }, "[{");
+        schema = schema.substring(0, schema.length - 1) + "}]";
+      }
+    });
 
+    // sp.on("dataToDevice", function(data) {
+    //   console.log("yoyoyoy");
+    //   console.log(data);
+    // });
+    /////////////
+    // var products = '[{  "name": "Pizza",  "price": "10",  "quantity": "7"}, {  "name": "Cerveja",  "price": "12",  "quantity": "5"}, {  "name": "Hamburguer",  "price": "10",  "quantity": "2"}, {  "name": "Fraldas",  "price": "6",  "quantity": "2"}]';
+    // var b = JSON.parse(products);
+    // console.log(b);
+    // console.log(vsPort);
+    sp.on("dataToDevice", (line) => {
+        try {
+            // console.log(line);
+            var obj = JSON.parse(line);
+            console.log(obj);
             if (obj.id === "gs.log") {
                 if (obj.value === "Failed to send frame: Transmit locked.") {
                     if (txLockoutMsgTimeout) {
@@ -352,4 +383,18 @@ Rocket.prototype.listen = function (listener) {
 
 module.exports = function (comPort) {
     return new Rocket(comPort)
+};
+
+String.prototype.format = function () {
+  var i = 0, args = arguments;
+  return this.replace(/{}/g, function () {
+    return typeof args[i] != 'undefined' ? args[i++] : '';
+  });
+};
+
+String.prototype.formatBrac = function () {
+  var i = 0, args = arguments;
+  return this.replace(/[]/g, function () {
+    return typeof args[i] != 'undefined' ? args[i++] : '';
+  });
 };
