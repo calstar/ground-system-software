@@ -75,20 +75,11 @@ function Rocket(comPort) {
       }
     });
 
-    // sp.on("dataToDevice", function(data) {
-    //   console.log("yoyoyoy");
-    //   console.log(data);
-    // });
-    /////////////
-    // var products = '[{  "name": "Pizza",  "price": "10",  "quantity": "7"}, {  "name": "Cerveja",  "price": "12",  "quantity": "5"}, {  "name": "Hamburguer",  "price": "10",  "quantity": "2"}, {  "name": "Fraldas",  "price": "6",  "quantity": "2"}]';
-    // var b = JSON.parse(products);
-    // console.log(b);
-    // console.log(vsPort);
     sp.on("dataToDevice", (line) => {
         try {
             // console.log(line);
             var obj = JSON.parse(line);
-            console.log(obj);
+            // console.log(obj);
             if (obj.id === "gs.log") {
                 if (obj.value === "Failed to send frame: Transmit locked.") {
                     if (txLockoutMsgTimeout) {
@@ -131,6 +122,8 @@ function Rocket(comPort) {
             }
 
             this.notify(obj);
+            obj = obj["0"];
+            obj.value = Number(obj.value);
             this.history[obj["id"]].push(obj);
             this.updateConsole(obj);
 
